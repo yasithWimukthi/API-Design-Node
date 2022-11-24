@@ -51,7 +51,7 @@ model Update {
 
   User        User?         @relation(fields: [userId], references: [id])
   userId      String?
-  UpdatePoint UpdatePoint[]
+  UpdatePoints UpdatePoint[]
 }
 
 model UpdatePoint {
