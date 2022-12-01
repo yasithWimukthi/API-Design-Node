@@ -1,11 +1,17 @@
 import { Router } from "express";
+import { body, validationResult } from "express-validator";
 
 const router = Router();
 /**
  * Product
  */
-router.get("/product", (req, res) => {
-    res.json({ message: "product" });
+router.post("/product", body("name"), (req, res) => {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+        res.status(400);
+        res.json({ errors: errors.array() });
+    }
 });
 
 router.get("/product/:id", (req, res) => {});
