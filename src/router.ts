@@ -1,18 +1,12 @@
 import { Router } from "express";
 import { body, validationResult } from "express-validator";
+import {handleInputError} from "./handlers/middleware";
 
 const router = Router();
 /**
  * Product
  */
-router.post("/product", body("name").isString(), (req, res) => {
-    const errors = validationResult(req);
-
-    if (!errors.isEmpty()) {
-        res.status(400);
-        res.json({ errors: errors.array() });
-    }
-});
+router.post("/product", body("name").isString(), handleInputError, (req, res) => {});
 
 router.get("/product/:id", (req, res) => {});
 
