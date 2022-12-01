@@ -5,7 +5,7 @@ const router = Router();
 /**
  * Product
  */
-router.post("/product", body("name"), (req, res) => {
+router.post("/product", body("name").isString(), (req, res) => {
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
