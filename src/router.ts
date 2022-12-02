@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { body, validationResult } from "express-validator";
+import {body, oneOf, validationResult} from "express-validator";
 import {handleInputError} from "./handlers/middleware";
 
 const router = Router();
@@ -26,7 +26,10 @@ router.get("/update/:id", (req, res) => {});
 
 router.post("/update", (req, res) => {});
 
-router.put("/update/:id", (req, res) => {});
+router.put("/update/:id",
+    body('title').optional(),
+    body('body').optional(),
+    body('version').optional(),(req, res) => {});
 
 router.delete("/update/:id", (req, res) => {});
 
