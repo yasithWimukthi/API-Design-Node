@@ -36,12 +36,26 @@ export const createProduct = async (req, res) => {
 const updateProduct = (req, res) => {
     const { id } = req.params;
     const { name } = req.body;
+    // @ts-ignore
     const product = prisma.product.update({
         where: {
             id,
+            belongsToId: req.user.id
         },
         data: {
             name,
+        },
+    });
+    return res.json({data:product});
+}
+
+const deleteProduct = (req, res) => {
+    const { id } = req.params;
+    // @ts-ignore
+    const product = prisma.product.delete({
+        where: {
+            id,
+            belongsToId: req.user.id
         },
     });
     return res.json({data:product});
