@@ -32,3 +32,17 @@ export const createProduct = async (req, res) => {
     });
     return res.json({data:product});
 }
+
+const updateProduct = (req, res) => {
+    const { id } = req.params;
+    const { name } = req.body;
+    const product = prisma.product.update({
+        where: {
+            id,
+        },
+        data: {
+            name,
+        },
+    });
+    return res.json({data:product});
+}
