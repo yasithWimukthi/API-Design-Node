@@ -10,3 +10,14 @@ export const getAllProducts = async (req, res) => {
     });
     return res.json({data:user.Product});
 }
+
+export const getOneProduct = async (req, res) => {
+    const { id } = req.params;
+    const product = await prisma.product.findFirst({
+        where: {
+            id,
+            belongsToId: req.user.id
+        },
+    });
+    return res.json({data:product});
+}
