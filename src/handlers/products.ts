@@ -39,8 +39,10 @@ const updateProduct = (req, res) => {
     // @ts-ignore
     const product = prisma.product.update({
         where: {
-            id,
-            belongsToId: req.user.id
+            id_belongsToId: {
+                id,
+                belongsToId: req.user.id
+            }
         },
         data: {
             name,
@@ -54,8 +56,10 @@ const deleteProduct = (req, res) => {
     // @ts-ignore
     const product = prisma.product.delete({
         where: {
-            id,
-            belongsToId: req.user.id
+            id_belongsToId: {
+                id,
+                belongsToId: req.user.id
+            }
         },
     });
     return res.json({data:product});
