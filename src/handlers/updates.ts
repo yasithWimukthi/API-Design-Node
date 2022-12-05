@@ -9,3 +9,23 @@ export const getOneUpdate = async (req,res) => {
     });
     return res.json({data:update});
 }
+
+export const getAllUpdates = async (req,res) => {
+    // @ts-ignore
+    const products = await prisma.products.findMany({
+        where: {
+            belongsToId: req.user.id
+        },
+        include: {
+            updates: true
+        }
+    });
+
+    const updates = products.reduce((allUpdates, product) => {
+        return [...allUpdates, ...product.updates];
+    }
+    , []);
+
+    return res.json({data:updates});
+
+}
