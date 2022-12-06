@@ -46,3 +46,15 @@ export const createUpdate = async (req,res) => {
 
     return res.json({data:update});
 }
+
+const editUpdate = async (req,res) => {
+    const { id } = req.params;
+    const { name } = req.body;
+    const update = await prisma.update.update({
+        where: {
+            id
+        },
+        data: req.body
+    });
+    return res.json({data:update});
+}
