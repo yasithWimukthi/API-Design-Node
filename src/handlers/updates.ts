@@ -58,3 +58,13 @@ const editUpdate = async (req,res) => {
     });
     return res.json({data:update});
 }
+
+const deleteUpdate = async (req,res) => {
+    const { id } = req.params;
+    const update = await prisma.update.delete({
+        where: {
+            id
+        }
+    });
+    return res.json({data:update});
+}
