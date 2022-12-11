@@ -25,5 +25,9 @@ app.use((err, req, res, next) => {
         res.status(401);
         res.json({ message: "nope" });
     }
+    if (err.type === 'input') {
+        res.status(400)
+        return res.send('invalid input')
+    }
 });
 export default app;
