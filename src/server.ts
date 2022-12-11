@@ -19,4 +19,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/api", protect, router);
 app.post("/user", createNewUser);
 app.post("/signin", signin);
+
+app.use((err, req, res, next) => {
+    if (err.type === "auth") {
+        res.status(401);
+        res.json({ message: "nope" });
+    }
+});
 export default app;
